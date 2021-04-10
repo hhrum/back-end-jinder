@@ -1,12 +1,19 @@
-var { Router } = require("express");
-var router = Router();
+const { Router } = require("express");
+const router = Router();
+
+// middlewares
+const vkAuth = require("../middleware/vkAuth");
 
 // // controllers
 // const Task = require("../controllers/Task");
 
+router.use(vkAuth);
+
 router.get("/", (req, res) => {
   res.send("Its Work!!");
 });
+
+// User index
 
 // // GET /tasks
 // router.get("/tasks", Task.index);
