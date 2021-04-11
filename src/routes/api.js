@@ -1,3 +1,4 @@
+const cors = require("cors");
 const { Router } = require("express");
 const router = Router();
 
@@ -5,15 +6,29 @@ const router = Router();
 const vkAuth = require("../middleware/vkAuth");
 
 // // controllers
-// const Task = require("../controllers/Task");
+const Auth = require("../controllers/Auth");
+const User = require("../controllers/User");
+const Resume = require("../controllers/Resume");
 
+router.use(cors());
 router.use(vkAuth);
 
 router.get("/", (req, res) => {
-  res.send("Its Work!!");
+  res.send(req.user);
 });
 
+//Auth
+router.get("/auth", Auth.auth);
+
 // User index
+router.get("/users", User.index);
+router.get("/users/:id", User.show);
+// router.put("/users/:id", User.update);
+
+// Resume
+router.get("/resume", Resume.index);
+router.get("/resume/:id", Resume.show);
+router.post("/resume", Resume.store);
 
 // // GET /tasks
 // router.get("/tasks", Task.index);

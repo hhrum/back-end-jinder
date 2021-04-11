@@ -4,7 +4,30 @@ const Schema = mongoose.Schema;
 module.exports = {
   profession: {
     type: Schema.Types.ObjectId,
-    ref: "Profession"
+    ref: "Profession",
+    default: null
   },
-  experience: Boolean
+  competitions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Competition",
+      default: null
+    }
+  ],
+  salary: {
+    type: Number,
+    default: null
+  },
+  time: {
+    type: String,
+    default: "full-time"
+  },
+  description: {
+    type: String,
+    default: null
+  },
+  experience: {
+    type: Number,
+    default: null
+  }
 };

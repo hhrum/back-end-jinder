@@ -8,6 +8,7 @@ const secretKey = "9VyWWYSotHXeeMlrdbEG";
 
 const vkAuth = async (req, res, next) => {
   const urlParams = req.query;
+  let isNewUser = false;
 
   const ordered = {};
   Object.keys(urlParams)
@@ -38,10 +39,11 @@ const vkAuth = async (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         vkId: vkUserId
       });
+      isNewUser = true;
     }
-    console.log(user);
 
     req.user = user;
+    req.isNewUser = isNewUser;
     next();
   } else {
     res.status(403).send("Ошибка авторизации");

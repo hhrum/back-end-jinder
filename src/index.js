@@ -11,7 +11,7 @@ const api = require("./routes/api");
 const PORT = process.env.PORT || 8080;
 
 const online =
-  "mongodb+srv://root:<password>@cluster0.sic7i.mongodb.net/jinder?retryWrites=true&w=majority";
+  "mongodb+srv://root:root@cluster0.sic7i.mongodb.net/jinder?retryWrites=true&w=majority";
 mongoose.connect(online, {
   useUnifiedTopology: true,
   useNewUrlParser: true
