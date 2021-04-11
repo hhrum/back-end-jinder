@@ -1,5 +1,5 @@
 // Модели пока что нет
-// const Vacancy = require("../models/Vacancy");
+const Vacancy = require("../models/Vacancy");
 
 class VacancyControler {
   index(req, res) {}
@@ -12,3 +12,5 @@ class VacancyControler {
 
   destroy(req, res) {}
 }
+
+module.exports = new VacancyControler();

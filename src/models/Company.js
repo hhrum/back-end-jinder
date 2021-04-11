@@ -8,8 +8,8 @@ const model = mongoose.model("Company", Schema);
 
 module.exports = model;
 
-module.exports.addWorker = (companyId, workerId) => {
-  User.findByIdAndUpdate(workerId, {
+module.exports.addWorker = async (companyId, workerId) => {
+  await User.findByIdAndUpdate(workerId, {
     company: companyId
   });
   return model.findByIdAndUpdate(
@@ -24,10 +24,17 @@ module.exports.addWorker = (companyId, workerId) => {
   );
 };
 
-module.exports.addVacancy = (companyId, vacancyId) => {
-  Vacancy.findByIdAndUpdate(vacancyId, {
-    company: companyId
-  });
+module.exports.addVacancy = async (companyId, vacancyId) => {
+  await Vacancy.findByIdAndUpdate(
+    vacancyId,
+    {
+      company: companyId
+    },
+    {
+      new: true,
+      useFindAndModify: false
+    }
+  );
   console.log(companyId, vacancyId);
 
   return model.findByIdAndUpdate(

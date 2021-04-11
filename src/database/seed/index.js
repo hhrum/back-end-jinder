@@ -24,11 +24,11 @@ module.exports = async () => {
   // Faculties Types
   await FacultyType.deleteMany({});
 
-  const bakalavr = FacultyType.create({
+  const bakalavr = await FacultyType.create({
     _id: new mongoose.Types.ObjectId(),
     name: "Бакалавриат"
   });
-  const specialitet = FacultyType.create({
+  const specialitet = await FacultyType.create({
     _id: new mongoose.Types.ObjectId(),
     name: "Специалитет"
   });
@@ -119,7 +119,6 @@ module.exports = async () => {
 
   let vacancy = await Vacancy.create({
     _id: new mongoose.Types.ObjectId(),
-    // company: sud._id,
     profession: urist._id,
     salary: 50000,
     experience: 0,
@@ -130,7 +129,6 @@ module.exports = async () => {
 
   vacancy = await Vacancy.create({
     _id: new mongoose.Types.ObjectId(),
-    company: sud._id,
     profession: urist._id,
     salary: 80000,
     experience: 4,
@@ -141,7 +139,6 @@ module.exports = async () => {
 
   vacancy = await Vacancy.create({
     _id: new mongoose.Types.ObjectId(),
-    company: internet._id,
     profession: coder._id,
     salary: 50000,
     experience: 2,
@@ -153,7 +150,6 @@ module.exports = async () => {
 
   vacancy = await Vacancy.create({
     _id: new mongoose.Types.ObjectId(),
-    company: internet._id,
     profession: coder._id,
     salary: 50000,
     experience: 0,

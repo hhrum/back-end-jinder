@@ -7,10 +7,17 @@ const model = mongoose.model("Educationlnstitution", Schema);
 
 module.exports = model;
 
-module.exports.addFaculty = (institutionId, facultyId) => {
-  Faculty.findByIdAndUpdate(facultyId, {
-    institution: institutionId
-  });
+module.exports.addFaculty = async (institutionId, facultyId) => {
+  await Faculty.findByIdAndUpdate(
+    facultyId,
+    {
+      institution: institutionId
+    },
+    {
+      new: true,
+      useFindAndModify: false
+    }
+  );
   return model.findByIdAndUpdate(
     institutionId,
     {

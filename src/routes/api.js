@@ -9,6 +9,7 @@ const vkAuth = require("../middleware/vkAuth");
 const Auth = require("../controllers/Auth");
 const User = require("../controllers/User");
 const Resume = require("../controllers/Resume");
+const Vacancy = require("../controllers/Vacancy");
 
 router.use(cors());
 router.use(vkAuth);
@@ -30,15 +31,7 @@ router.get("/resume", Resume.index);
 router.get("/resume/:id", Resume.show);
 router.post("/resume", Resume.store);
 
-// // GET /tasks
-// router.get("/tasks", Task.index);
-// // GET /tasks/{id}
-// router.get("/tasks/:id", Task.show);
-// // POST /tasks
-// router.post("/tasks", Task.store);
-// // PUT /tasks/{id}
-// router.put("/tasks/:id", Task.update);
-// // DELETE /tasks/{id}
-// router.delete("/tasks/:id", Task.destroy);
+// Vacancy
+router.get("/vacancies", Vacancy.index);
 
 module.exports = router;
