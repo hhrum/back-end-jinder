@@ -4,10 +4,19 @@ const common = require("../Helpers/CommonForVacanyAndResume");
 
 const schema = {
   _id: Schema.Types.ObjectId,
-  name: String,
+  // name: String,
   company: {
     type: Schema.Types.ObjectId,
-    ref: "Company"
+    ref: "Company",
+    default: null
+  },
+  isOpen: {
+    type: Boolean,
+    default: true
+  },
+  isHigh: {
+    type: Boolean,
+    default: true
   },
   ...common
 };

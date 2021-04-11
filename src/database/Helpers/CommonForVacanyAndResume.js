@@ -7,13 +7,6 @@ module.exports = {
     ref: "Profession",
     default: null
   },
-  competitions: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Competition",
-      default: null
-    }
-  ],
   salary: {
     type: Number,
     default: null
@@ -22,12 +15,12 @@ module.exports = {
     type: String,
     default: "full-time"
   },
-  description: {
-    type: String,
-    default: null
-  },
   experience: {
     type: Number,
+    default: null
+  },
+  description: {
+    type: String,
     default: null
   }
 };

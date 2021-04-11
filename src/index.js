@@ -17,6 +17,8 @@ mongoose.connect(online, {
   useNewUrlParser: true
 });
 
+const seed = require("./database/seed");
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,5 +26,6 @@ app.use("/", web);
 app.use("/api", api);
 
 app.listen(PORT, () => {
+  // seed();
   console.log(`Server is running at port: ${PORT}`);
 });
