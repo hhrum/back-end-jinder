@@ -1,8 +1,10 @@
 // Модели пока что нет
-// const Profession = require("../models/Profession");
+const Profession = require("../models/Profession");
 
 class ProfessionControler {
-  index(req, res) {}
+  async index(req, res) {
+    res.send(await Profession.find());
+  }
 
   show(req, res) {}
 
@@ -12,3 +14,5 @@ class ProfessionControler {
 
   destroy(req, res) {}
 }
+
+module.exports = new ProfessionControler();

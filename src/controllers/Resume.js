@@ -1,4 +1,6 @@
+const mongoose = require("mongoose");
 const Resume = require("../models/Resume");
+const User = require("../models/User");
 
 class ResumeControler {
   index(req, res) {}
@@ -15,25 +17,61 @@ class ResumeControler {
 
   async store(req, res) {
     const resumeData = {
+      _id: new mongoose.Types.ObjectId(),
       user: req.user._id,
       profession: req.body.profession || null,
       competitions: req.body.competitions || null,
-      time: req.body.time || "full-time",
+      time: req.body.time || null,
       salary: req.body.salary || null,
-      education: req.body.education || null,
+      faculty: req.body.faculty || null,
       description: req.body.description || null,
       experience: req.body.experience || null
     };
 
     try {
       const resume = await Resume.create(resumeData);
+      await User.findByIdAndUpdate(
+        req.user._id,
+        { resume: resume._id },
+        {
+          new: true,
+          useFindAndModify: false
+        }
+      );
       res.send(resume);
     } catch (error) {
       res.status(418).send(error);
     }
   }
 
-  update(req, res) {}
+  async update(req, res) {
+    try {
+      let resume = Resume.findById(req.params.id);
+
+      const resumeData = {
+        _id: new mongoose.Types.ObjectId(),
+        user: req.user._id,
+        profession: req.body.profession || resume.profession,
+        time: req.body.time || resume.time,
+        salary: req.body.salary || resume.salary,
+        faculty: req.body.faculty || resume.faculty,
+        description: req.body.description || resume.description,
+        experience: req.body.experience || resume.experience
+      };
+
+      resume = await Resume.findByIdAndUpdate(
+        req.params._id,
+        { resumeData },
+        {
+          new: true,
+          useFindAndModify: false
+        }
+      );
+      res.send(resume);
+    } catch (error) {
+      res.status(418).send(error);
+    }
+  }
 
   destroy(req, res) {}
 }

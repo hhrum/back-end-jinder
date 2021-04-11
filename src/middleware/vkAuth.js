@@ -32,7 +32,7 @@ const vkAuth = async (req, res, next) => {
   if (paramsHash === urlParams.sign) {
     const vkUserId = urlParams.vk_user_id;
 
-    let user = await User.findOne({ vkId: vkUserId }).exec();
+    let user = await User.findOne({ vkId: vkUserId }).populate("resume");
 
     if (!user) {
       user = await User.create({

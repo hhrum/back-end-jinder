@@ -7,12 +7,18 @@ const schema = {
     type: Schema.Types.ObjectId,
     ref: "Vacancy"
   },
-  vacancyState: String,
+  vacancyState: {
+    type: String,
+    default: null
+  },
   resume: {
     type: Schema.Types.ObjectId,
     ref: "Resume"
   },
-  resumeState: String
+  resumeState: {
+    type: String,
+    default: null
+  }
 };
 
 module.exports = new Schema(schema);

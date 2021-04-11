@@ -7,10 +7,11 @@ const schema = {
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    require: true
+    default: null
   },
-  education: {
-    type: String,
+  faculty: {
+    type: Schema.Types.ObjectId,
+    ref: "Faculty",
     default: null
   },
   ...common

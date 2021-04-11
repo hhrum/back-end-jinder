@@ -2,7 +2,11 @@
 const Vacancy = require("../models/Vacancy");
 
 class VacancyControler {
-  index(req, res) {}
+  async index(req, res) {
+    const resume = req.user.resume;
+
+    res.send(await Vacancy.find().populate("company").populate("profession"));
+  }
 
   show(req, res) {}
 
